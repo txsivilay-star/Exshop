@@ -91,3 +91,17 @@
 @keyframes soonp{50%{transform:scale(.45);opacity:.5}}
 .soon-ok{display:block;margin:18px auto 0;min-height:44px;padding:0 24px;color:var(--text);font-size:15px;font-weight:500;border-bottom:2px solid #5865F2;border-radius:0}
 @media (prefers-reduced-motion:reduce){.soon,.soon-c{transition-duration:.01ms!important}.soon-line::before,.soon-st b{animation:none}}
+
+/* ปุ่มติ๊ก จำบัญชี */
+.rem{display:flex;align-items:center;gap:10px;margin:4px 0 2px;padding:6px 0;width:fit-content;font-size:14.5px;color:var(--muted);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.rem input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.rem .box{width:21px;height:21px;border-radius:7px;border:1.5px solid var(--border);background:var(--field);display:grid;place-items:center;flex:none;transition:background .18s,border-color .18s,transform .18s}
+.rem .box svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.5);transition:opacity .15s,transform .22s}
+.rem input:checked+.box{background:var(--red);border-color:var(--red)}
+.rem input:checked+.box svg{opacity:1;transform:none}
+.rem:active .box{transform:scale(.92)}
+.rem input:focus-visible+.box{outline:2px solid var(--red);outline-offset:2px}
+/* สถานะล็อกอินแล้วที่หัวเว็บ */
+.hb.hb-who{padding:0 9px;max-width:130px;cursor:default}
+.hb.hb-who .who-n{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.hb.hb-out{background:var(--card);color:inherit;border:1px solid var(--border);box-shadow:none}

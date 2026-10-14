@@ -49,6 +49,8 @@
 <symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
 <symbol id="alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></symbol>
 <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></symbol>
+<symbol id="tick" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+<symbol id="logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
 </defs>
 </svg>
 
@@ -152,10 +154,11 @@
       <div class="am-stack">
         <section class="am-panel" id="p-login" role="tabpanel" aria-labelledby="tab-login">
           <form novalidate data-form="login">
-            <div class="field"><label for="l-id">ຊື່ຜູ້ໃຊ້</label>
-              <div class="inp"><svg class="i"><use href="#user"/></svg><input id="l-id" name="username" type="text" placeholder="ຊື່ຜູ້ໃຊ້" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" aria-describedby="l-id-e"></div><p class="err" id="l-id-e"></p></div>
+            <div class="field"><label for="l-em">ອີເມວ</label>
+              <div class="inp"><svg class="i"><use href="#mail"/></svg><input id="l-em" name="email" type="email" placeholder="name@example.com" autocomplete="username email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" aria-describedby="l-em-e"></div><p class="err" id="l-em-e"></p></div>
             <div class="field"><label for="l-pw">ລະຫັດຜ່ານ</label>
               <div class="inp"><svg class="i"><use href="#lock"/></svg><input id="l-pw" name="password" type="password" placeholder="ລະຫັດຜ່ານ" autocomplete="current-password" enterkeyhint="go" aria-describedby="l-pw-e"><button class="eye" type="button" aria-pressed="false" aria-label="ສະແດງລະຫັດຜ່ານ"><svg class="i"><use href="#eye"/></svg></button></div><p class="err" id="l-pw-e"></p></div>
+            <label class="rem"><input type="checkbox" id="l-rem" name="remember"><span class="box" aria-hidden="true"><svg class="i"><use href="#tick"/></svg></span><span>ຈື່ບັນຊີ</span></label>
             <div class="ts" id="ts-login"></div>
             <button class="go" type="submit"><span class="lb">ເຂົ້າສູ່ລະບົບ<svg class="i"><use href="#arrow"/></svg></span><span class="sp" aria-hidden="true"></span></button>
           </form>
@@ -166,8 +169,8 @@
           <form novalidate data-form="register">
             <div class="field"><label for="r-id">ຊື່ຜູ້ໃຊ້</label>
               <div class="inp"><svg class="i"><use href="#user"/></svg><input id="r-id" name="username" type="text" placeholder="ຊື່ຜູ້ໃຊ້" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" aria-describedby="r-id-e"></div><p class="err" id="r-id-e"></p></div>
-            <div class="field"><label for="r-em">ອີເມວ (ຖ້າມີ)</label>
-              <div class="inp"><svg class="i"><use href="#mail"/></svg><input id="r-em" name="email" type="email" placeholder="name@example.com (ບໍ່ບັງຄັບ)" autocomplete="email" autocapitalize="none" spellcheck="false" enterkeyhint="next" aria-describedby="r-em-e"></div><p class="err" id="r-em-e"></p></div>
+            <div class="field"><label for="r-em">ອີເມວ</label>
+              <div class="inp"><svg class="i"><use href="#mail"/></svg><input id="r-em" name="email" type="email" placeholder="name@example.com" autocomplete="email" autocapitalize="none" spellcheck="false" enterkeyhint="next" aria-describedby="r-em-e"></div><p class="err" id="r-em-e"></p></div>
             <div class="field"><label for="r-pw">ລະຫັດຜ່ານ</label>
               <div class="inp"><svg class="i"><use href="#lock"/></svg><input id="r-pw" name="password" type="password" placeholder="ຢ່າງໜ້ອຍ 6 ຕົວອັກສອນ" autocomplete="new-password" enterkeyhint="next" aria-describedby="r-pw-e"><button class="eye" type="button" aria-pressed="false" aria-label="ສະແດງລະຫັດຜ່ານ"><svg class="i"><use href="#eye"/></svg></button></div><p class="err" id="r-pw-e"></p></div>
             <div class="field"><label for="r-pw2">ຢືນຢັນລະຫັດຜ່ານ</label>
@@ -216,6 +219,7 @@
 
 <script src="i18n.js"></script>
 <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="auth.js"></script>
 <script src="welcome.js"></script>
 <script src="refraction.js"></script>

@@ -607,6 +607,111 @@
 "Không cần nạp để mua skin",
 "स्किन खरीदने के लिए टॉप अप ज़रूरी नहीं",
 "Sem precisar recarregar para comprar skins"
+],
+"ອີເມວ": [
+"อีเมล",
+"Email",
+"Email",
+"ईमेल",
+"E-mail"
+],
+"ຈື່ບັນຊີ": [
+"จำบัญชี",
+"Remember me",
+"Ghi nhớ tài khoản",
+"अकाउंट याद रखें",
+"Lembrar conta"
+],
+"ອອກຈາກລະບົບ": [
+"ออกจากระบบ",
+"Log out",
+"Đăng xuất",
+"लॉग आउट",
+"Sair"
+],
+"ກະລຸນາປ້ອນອີເມວ": [
+"กรุณากรอกอีเมล",
+"Please enter your email",
+"Vui lòng nhập email",
+"कृपया ईमेल दर्ज करें",
+"Informe seu e-mail"
+],
+"ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ": [
+"อีเมลหรือรหัสผ่านไม่ถูกต้อง",
+"Incorrect email or password",
+"Email hoặc mật khẩu không đúng",
+"ईमेल या पासवर्ड गलत है",
+"E-mail ou senha incorretos"
+],
+"ກະລຸນາຢືນຢັນອີເມວກ່ອນເຂົ້າສູ່ລະບົບ (ກວດກ່ອງຈົດໝາຍຂອງທ່ານ)": [
+"กรุณายืนยันอีเมลก่อนเข้าสู่ระบบ (ตรวจสอบกล่องจดหมายของคุณ)",
+"Please confirm your email before logging in (check your inbox)",
+"Vui lòng xác nhận email trước khi đăng nhập (kiểm tra hộp thư)",
+"लॉगिन से पहले ईमेल की पुष्टि करें (इनबॉक्स देखें)",
+"Confirme seu e-mail antes de entrar (verifique sua caixa de entrada)"
+],
+"ອີເມວນີ້ຖືກໃຊ້ສະໝັກແລ້ວ": [
+"อีเมลนี้ถูกใช้สมัครแล้ว",
+"This email is already registered",
+"Email này đã được đăng ký",
+"यह ईमेल पहले से पंजीकृत है",
+"Este e-mail já está cadastrado"
+],
+"ຊື່ຜູ້ໃຊ້ນີ້ມີຄົນໃຊ້ແລ້ວ": [
+"ชื่อผู้ใช้นี้มีคนใช้แล้ว",
+"This username is taken",
+"Tên người dùng này đã có người dùng",
+"यह यूज़रनेम पहले से लिया जा चुका है",
+"Este usuário já está em uso"
+],
+"ລອງຫຼາຍເກີນໄປ ກະລຸນາລໍຖ້າສັກຄູ່ແລ້ວລອງໃໝ່": [
+"ลองหลายครั้งเกินไป กรุณารอสักครู่แล้วลองใหม่",
+"Too many attempts, please wait a moment and try again",
+"Thử quá nhiều lần, vui lòng chờ một lát rồi thử lại",
+"बहुत ज़्यादा प्रयास, कृपया थोड़ी देर बाद फिर कोशिश करें",
+"Muitas tentativas, aguarde um momento e tente novamente"
+],
+"ການກວດສອບບໍ່ຜ່ານ ກະລຸນາລອງໃໝ່": [
+"การตรวจสอบไม่ผ่าน กรุณาลองใหม่",
+"Verification failed, please try again",
+"Xác minh không thành công, vui lòng thử lại",
+"सत्यापन विफल, कृपया फिर कोशिश करें",
+"Falha na verificação, tente novamente"
+],
+"ເກີດຂໍ້ຜິດພາດ ກະລຸນາລອງໃໝ່": [
+"เกิดข้อผิดพลาด กรุณาลองใหม่",
+"Something went wrong, please try again",
+"Đã xảy ra lỗi, vui lòng thử lại",
+"कुछ गड़बड़ हुई, कृपया फिर कोशिश करें",
+"Algo deu errado, tente novamente"
+],
+"ສະໝັກສະມາຊິກສຳເລັດ ກະລຸນາເຂົ້າສູ່ລະບົບ": [
+"สมัครสมาชิกสำเร็จ กรุณาเข้าสู่ระบบ",
+"Sign-up complete, please log in",
+"Đăng ký thành công, vui lòng đăng nhập",
+"पंजीकरण सफल, कृपया लॉगिन करें",
+"Cadastro concluído, faça login"
+],
+"ສະໝັກສຳເລັດ! ກະລຸນາຢືນຢັນອີເມວ (ກວດກ່ອງຈົດໝາຍ) ແລ້ວເຂົ້າສູ່ລະບົບ": [
+"สมัครสำเร็จ! กรุณายืนยันอีเมล (ตรวจสอบกล่องจดหมาย) แล้วเข้าสู่ระบบ",
+"Signed up! Please confirm your email (check your inbox), then log in",
+"Đăng ký thành công! Vui lòng xác nhận email (kiểm tra hộp thư) rồi đăng nhập",
+"साइन अप सफल! कृपया ईमेल की पुष्टि करें (इनबॉक्स देखें), फिर लॉगिन करें",
+"Cadastro feito! Confirme seu e-mail (veja a caixa de entrada) e depois faça login"
+],
+"ຍັງບໍ່ໄດ້ເຊື່ອມຖານຂໍ້ມູນ ກະລຸນາລອງຣີເຟຣດໜ້າໃໝ່": [
+"ยังเชื่อมฐานข้อมูลไม่ได้ กรุณารีเฟรชหน้าใหม่",
+"Database not connected, please refresh the page",
+"Chưa kết nối cơ sở dữ liệu, vui lòng tải lại trang",
+"डेटाबेस कनेक्ट नहीं है, कृपया पेज रीफ़्रेश करें",
+"Banco de dados não conectado, atualize a página"
+],
+"ເຂົ້າສູ່ລະບົບດ້ວຍ Google ບໍ່ສຳເລັດ": [
+"เข้าสู่ระบบด้วย Google ไม่สำเร็จ",
+"Google sign-in failed",
+"Đăng nhập bằng Google không thành công",
+"Google से लॉगिन विफल",
+"Falha ao entrar com Google"
 ]
 };
   const HTML_LANG = { lo: 'lo', th: 'th', en: 'en', vi: 'vi', hi: 'hi', pt: 'pt-BR' };
