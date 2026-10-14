@@ -250,3 +250,8 @@ input,select,textarea{ font-size:16px !important; } /* กัน iOS ซูม�
   border-left:1px solid rgba(255,255,255,.12);
 }
 .dr-f .l{background:rgba(255,255,255,.08)}
+
+/* real images: product cards + category banners (fall back to generated art when the file is missing) */
+.pimg .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cb .cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.cb:not(.noimg) > :not(.cimg){display:none}

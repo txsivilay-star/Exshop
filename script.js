@@ -8,7 +8,7 @@ const CONFIG = {
 };
 
 /* เປິດ/ປິດการแสดงผล: true = แสดง, false = ซ่อน (ข้อมูลยังอยู่ครบ) */
-const SHOW = { categories:false, products:false, featured:false };
+const SHOW = { categories:true, products:true, featured:false };
 
 const $ = (s, r=document) => r.querySelector(s);
 const ic = (id, cls='') => `<svg class="i ${cls}"><use href="#${id}"/></svg>`;
@@ -94,6 +94,11 @@ function artSq(key){
   return `<div style="position:absolute;inset:0;container-type:inline-size;background:${a.bg}">${a.top}${tx}</div>`;
 }
 
+function prodImg(p){
+  const src = p.img || `images/products/${p.art}.jpg`;
+  return `<img class="pic" src="${src}" alt="${p.n.replace(/"/g,'&quot;')}" loading="lazy" onerror="this.outerHTML=artSq('${p.art}')">`;
+}
+
 /* products */
 const products = [
   {n:'UNBAN FIVEM', p:'฿0', left:'0', sold:'0', art:'unban', cat:'fivem'},
@@ -109,7 +114,7 @@ function renderProducts(cat){
   const list = products.filter(p => p.cat === cat);
   $('#grid').innerHTML = list.length ? list.map((p,i) => `
     <article class="pc">
-      <div class="pimg">${artSq(p.art)}</div>
+      <div class="pimg">${prodImg(p)}</div>
       <div class="pb">
         <h3 class="pn">${p.n}</h3>
         <div class="pinfo"><div class="pr"><span class="pl"><span class="now">${p.p}</span></span><span class="left">ເຫຼືອ ${p.left} ຊິ້ນ</span></div></div>
@@ -147,7 +152,7 @@ const cats = [
 ];
 $('#catList').innerHTML = cats.map(c => `
   <button class="cat" data-cat="${c.k}">
-    <div class="cb"><span class="art"></span><span class="t1">${c.t1}</span><span class="t2">PRODUCT</span>
+    <div class="cb"><img class="cimg" src="${c.img || 'images/categories/' + c.k + '.jpg'}" alt="${c.n}" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><span class="art"></span><span class="t1">${c.t1}</span><span class="t2">PRODUCT</span>
       <span class="tg"><i>GAME ONLINE</i><i>CHEAT GAME</i><i>SOCIAL HUB</i><i>UNBAN SERVICE</i></span>
       <span class="cl">CLICK HERE!</span><span class="ln"></span></div>
     <div class="cat-b"><div><h3>${c.n}</h3><p>${c.d}</p></div><span class="cnt">${c.c} ສິນຄ້າ</span></div>
