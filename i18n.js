@@ -712,6 +712,13 @@
 "Đăng nhập bằng Google không thành công",
 "Google से लॉगिन विफल",
 "Falha ao entrar com Google"
+],
+"ກະລຸນາສະໝັກສະມາຊິກ ຫຼື ເຂົ້າສູ່ລະບົບກ່ອນໃຊ້ງານ": [
+"กรุณาสมัครสมาชิกหรือเข้าสู่ระบบก่อนใช้งาน",
+"Please sign up or log in to continue",
+"Vui lòng đăng ký hoặc đăng nhập để tiếp tục",
+"जारी रखने के लिए कृपया साइन अप या लॉगिन करें",
+"Cadastre-se ou entre para continuar"
 ]
 };
   const HTML_LANG = { lo: 'lo', th: 'th', en: 'en', vi: 'vi', hi: 'hi', pt: 'pt-BR' };

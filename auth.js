@@ -119,9 +119,10 @@ const AUTH = {
   });
 
   /* เປິດ/ປິດ (เรียกจาก go() ใน script.js) */
-  window.openAuth = function (v) {
+  window.openAuth = function (v, msg) {
     lastFocus = document.activeElement;
     show(v || 'login');
+    if (msg) say('info', msg);
     am.inert = false; am.setAttribute('aria-hidden', 'false');
     app.inert = true; am.classList.add('open'); am.scrollTop = 0;
     setTimeout(() => $('#tab-' + view).focus({ preventScroll: true }), 50);
@@ -304,6 +305,8 @@ const AUTH = {
       }
     });
   }
+  let authed = false;
+  window.isAuthed = () => authed;
   let shown = null;
   async function syncUser(user) {
     if (!user) { shown = null; setHeader(null); return; }
@@ -317,7 +320,7 @@ const AUTH = {
   }
   if (sb) {
     /* อย่า await เรียก supabase ใน callback นี้โดยตรง (กัน deadlock) จึงใช้ setTimeout */
-    sb.auth.onAuthStateChange((ev, session) => setTimeout(() => syncUser(session && session.user), 0));
+    sb.auth.onAuthStateChange((ev, session) => { authed = !!session; setTimeout(() => syncUser(session && session.user), 0); });
   }
   document.addEventListener('click', e => {
     if (!sb || !e.target.closest('[data-logout]')) return;

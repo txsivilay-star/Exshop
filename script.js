@@ -14,9 +14,19 @@ const $ = (s, r=document) => r.querySelector(s);
 const ic = (id, cls='') => `<svg class="i ${cls}"><use href="#${id}"/></svg>`;
 let snackT;
 function snack(msg){ const s=$('#snack'); s.textContent=msg; s.classList.add('show'); clearTimeout(snackT); snackT=setTimeout(()=>s.classList.remove('show'),2400); }
+/* คนที่ยังไม่ล็อกอิน: ดูหน้าเว็บ เลื่อน เปิดเมนู เปลี่ยนภาษา/ธีม ได้
+   แต่ทุกการกระทำ (ซื้อ เติมเงิน ออเดอร์ HWID แชต) จะเด้งหน้าต่างสมัครสมาชิกทันที
+   (กั้นฝั่งหน้าเว็บเพื่อ UX เท่านั้น ข้อมูลจริงต้องกันด้วย RLS ในฐานข้อมูล) */
+const NEED_AUTH_MSG = 'ກະລຸນາສະໝັກສະມາຊິກ ຫຼື ເຂົ້າສູ່ລະບົບກ່ອນໃຊ້ງານ';
+function requireAuth(fn){
+  if(window.isAuthed && window.isAuthed()){ if(fn) fn(); return true; }
+  if(window.openAuth) openAuth('register', NEED_AUTH_MSG); else snack(NEED_AUTH_MSG);
+  return false;
+}
 function go(route){
+  if(route==='login' || route==='register'){ if(window.openAuth){ openAuth(route); return; } }
+  else if(!requireAuth()) return;
   const u = CONFIG.routes[route];
-  if(!u && (route==='login' || route==='register') && window.openAuth){ openAuth(route); return; }
   if(u){ location.href = u; } else { snack('ຍັງບໍ່ໄດ້ຕັ້ງລິ້ງປາຍທາງ (CONFIG.routes.' + route + ')'); }
 }
 document.addEventListener('click', e => {
@@ -107,7 +117,7 @@ function renderProducts(cat){
         <div class="sold">${ic('flame')}ຂາຍໄປແລ້ວ ${p.sold} ຊິ້ນ</div>
       </div>
     </article>`).join('') : `<div class="empty">ຍັງບໍ່ມີສິນຄ້າໃນໝວດນີ້</div>`;
-  $('#grid').querySelectorAll('[data-buy]').forEach(b => b.addEventListener('click', () => CONFIG.onBuy(list[+b.dataset.buy])));
+  $('#grid').querySelectorAll('[data-buy]').forEach(b => b.addEventListener('click', () => requireAuth(() => CONFIG.onBuy(list[+b.dataset.buy]))));
 }
 renderProducts('fivem');
 
