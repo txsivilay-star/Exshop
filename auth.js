@@ -30,7 +30,7 @@ const AUTH = {
     mailTaken: 'ອີເມວນີ້ຖືກໃຊ້ສະໝັກແລ້ວ', nameTaken: 'ຊື່ຜູ້ໃຊ້ນີ້ມີຄົນໃຊ້ແລ້ວ',
     rate: 'ລອງຫຼາຍເກີນໄປ ກະລຸນາລໍຖ້າສັກຄູ່ແລ້ວລອງໃໝ່', captcha: 'ການກວດສອບບໍ່ຜ່ານ ກະລຸນາລອງໃໝ່',
     net: 'ເຊື່ອມຕໍ່ເຊີບເວີບໍ່ໄດ້ ກະລຸນາກວດອິນເຕີເນັດແລ້ວລອງໃໝ່', generic: 'ເກີດຂໍ້ຜິດພາດ ກະລຸນາລອງໃໝ່',
-    loginOk: 'ເຂົ້າສູ່ລະບົບສຳເລັດ', regOk: 'ສະໝັກສະມາຊິກສຳເລັດ ກະລຸນາເຂົ້າສູ່ລະບົບ',
+    loginOk: 'ເຂົ້າສູ່ລະບົບສຳເລັດ', regDone: 'ສະໝັກສະມາຊິກສຳເລັດ', regOk: 'ສະໝັກສະມາຊິກສຳເລັດ ກະລຸນາເຂົ້າສູ່ລະບົບ',
     regConfirm: 'ສະໝັກສຳເລັດ! ກະລຸນາຢືນຢັນອີເມວ (ກວດກ່ອງຈົດໝາຍ) ແລ້ວເຂົ້າສູ່ລະບົບ',
     noBackend: 'ຍັງບໍ່ໄດ້ເຊື່ອມຖານຂໍ້ມູນ ກະລຸນາລອງຣີເຟຣດໜ້າໃໝ່', googleFail: 'ເຂົ້າສູ່ລະບົບດ້ວຍ Google ບໍ່ສຳເລັດ'
   };
@@ -227,15 +227,14 @@ const AUTH = {
     const chk = await withTimeout(sb.rpc('username_available', { p_username: d.username }));
     if (chk.error) return { ok: false, message: mapError(chk.error) };
     if (chk.data === false) return { ok: false, message: M.nameTaken };
+    try { localStorage.setItem(REM, '1'); } catch (e) {} /* สมัครเสร็จให้อยู่ล็อกอินต่อเลย */
     const { data, error } = await withTimeout(sb.auth.signUp({
       email: d.email, password: d.password,
       options: { data: { username: d.username }, emailRedirectTo: location.origin + location.pathname, captchaToken: d.token || undefined } }));
     if (error) return { ok: false, message: mapError(error) };
     /* เปิด confirm email + อีเมลซ้ำ: Supabase คืน user ที่ identities ว่าง (ไม่ error เพื่อกันเดาอีเมล) */
     if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) return { ok: false, message: M.mailTaken };
-    const needConfirm = !data.session;
-    if (data.session) { try { await sb.auth.signOut(); } catch (e) {} } /* ให้กลับมาล็อกอินเอง */
-    return { ok: true, needConfirm };
+    return { ok: true, needConfirm: !data.session }; /* ไม่มี session = Supabase ยังเปิด Confirm email อยู่ */
   }
 
   $$('form', am).forEach(form => form.addEventListener('submit', async e => {
@@ -266,10 +265,20 @@ const AUTH = {
           form.reset();
           $$('.eye[aria-pressed="true"]', form).forEach(b => b.click());
           $$('.field.bad', form).forEach(f => f.classList.remove('bad'));
-          /* สมัครเสร็จ -> เด้งไปแท็บเข้าสู่ระบบ พร้อมใส่อีเมลให้ */
-          show('login'); $('#l-em').value = email;
-          say('success', r.needConfirm ? M.regConfirm : M.regOk);
-          setTimeout(() => $('#l-pw').focus({ preventScroll: true }), 350);
+          if (!r.needConfirm) {
+            /* สมัครเสร็จ ล็อกอินให้อัตโนมัติ ปิดหน้าต่างได้เลย */
+            say('success', M.regDone); done = true;
+            setTimeout(() => {
+              if (AUTH.redirect) { location.href = AUTH.redirect; return; }
+              closeAuth();
+              busy = false; btn.classList.remove('busy'); btn.removeAttribute('aria-busy'); resetTs('register');
+            }, 800);
+          } else {
+            /* Supabase ยังบังคับยืนยันอีเมล -> เด้งไปแท็บเข้าสู่ระบบ พร้อมใส่อีเมลให้ */
+            show('login'); $('#l-em').value = email;
+            say('success', M.regConfirm);
+            setTimeout(() => $('#l-pw').focus({ preventScroll: true }), 350);
+          }
         } else say('error', r.message);
       }
     } catch (err) { say('error', mapError(err)); }
