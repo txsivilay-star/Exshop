@@ -1,0 +1,57 @@
+/* ===== ภาษา: แถวในเมนู กดแล้วกางช่องเลือกภาษา + ฟอนต์หลายภาษา ===== */
+:root{--font:'Outfit','Noto Sans Lao Looped','Noto Sans Thai Looped','Noto Sans Devanagari',system-ui,sans-serif}
+.panel{overflow-y:auto;overscroll-behavior:contain}
+.dr-nav{flex:1 0 auto}
+
+/* แถวภาษา (หน้าตาเหมือนรายการอื่นในเมนู) */
+.dr-lang-btn{display:flex;align-items:center;gap:15px;width:100%;height:46px;border-radius:14px;padding:0 12px 0 16px;color:var(--muted);font-size:16.5px;text-align:left;
+  opacity:0;translate:0 14px;transition:opacity .15s,translate .15s,background .3s,color .3s}
+.ov.open .dr-lang-btn{opacity:1;translate:0 0;transition:opacity .4s ease .46s,translate .6s cubic-bezier(.2,.95,.3,1.15) .46s,background .3s,color .3s}
+.dr-lang-btn>svg:first-child{width:24px;height:24px;flex:none}
+.lg-t{flex:1}
+.lg-cur{display:flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;color:var(--text)}
+.lg-cur .fl{width:22px;height:15px;border-radius:3px;box-shadow:0 0 0 .5px rgba(0,0,0,.25)}
+.lg-cur.flip{animation:lgflip .65s cubic-bezier(.3,1.5,.5,1)}
+@keyframes lgflip{from{transform:perspective(220px) rotateX(90deg);opacity:0}}
+.lg-chev{width:18px;height:18px;flex:none;color:var(--muted);transition:transform .55s cubic-bezier(.3,1.5,.5,1)}
+.dr-lang-btn[aria-expanded="true"]{background:rgba(255,0,0,.1);color:var(--text)}
+.dr-lang-btn[aria-expanded="true"] .lg-chev{transform:rotate(180deg);color:var(--red)}
+.dr-lang-btn:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+
+/* พื้นที่ที่กางออก */
+.lg-wrap{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .5s cubic-bezier(.4,0,.2,1),visibility 0s .5s}
+.lg-wrap.open{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .65s cubic-bezier(.2,.9,.3,1)}
+.lg-in{min-height:0;overflow:hidden}
+.lg-pad{padding:10px 6px 8px}
+.lg-lh{padding:0 4px 10px;font-size:12px;letter-spacing:.14em;color:var(--muted);opacity:0;transition:opacity .2s}
+.lg-wrap.open .lg-lh{opacity:1;transition:opacity .4s ease .12s}
+.lg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+
+.lg{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;height:64px;border-radius:14px;
+  border:1px solid var(--border);background:rgba(127,127,127,.07);color:var(--muted);font-size:14px;letter-spacing:.04em;
+  opacity:0;transform:translateY(18px) scale(.5) rotate(-10deg);
+  transition:opacity .15s,transform .2s,border-color .25s,background .25s,color .25s}
+:root[data-theme="dark"] .lg{background:rgba(255,255,255,.04)}
+.lg .fl{width:26px;height:17.5px;border-radius:3px;box-shadow:0 0 0 .5px rgba(0,0,0,.25)}
+.lg-wrap.open .lg{opacity:1;transform:none;
+  transition:opacity .35s ease var(--d),transform .75s cubic-bezier(.3,1.6,.5,1) var(--d),border-color .25s,background .25s,color .25s}
+.lg-wrap.open .lg .fl{animation:flpop .75s cubic-bezier(.3,1.7,.5,1) both;animation-delay:calc(var(--d) + .12s)}
+@keyframes flpop{from{transform:scale(.3) rotate(-28deg)}to{transform:scale(1)}}
+.lg:nth-child(1){--d:.08s}.lg:nth-child(2){--d:.13s}.lg:nth-child(3){--d:.18s}
+.lg:nth-child(4){--d:.23s}.lg:nth-child(5){--d:.28s}.lg:nth-child(6){--d:.33s}
+.lg-wrap.open .lg:active{transform:scale(.94);transition-delay:0s}
+.lg.pulse{animation:lgpulse .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes lgpulse{40%{transform:scale(1.14)}}
+.lg[aria-checked="true"]{border-color:rgba(255,40,40,.7);background:rgba(255,0,0,.13);color:#ff3b30;box-shadow:0 0 0 3px rgba(255,0,0,.1)}
+.lg:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media (hover:hover){.lg:hover{border-color:rgba(255,255,255,.28)}:root:not([data-theme="dark"]) .lg:hover{border-color:rgba(0,0,0,.25)}.lg[aria-checked="true"]:hover{border-color:rgba(255,40,40,.9)}.dr-lang-btn:hover{color:var(--text)}}
+.dr-f button:nth-child(1){--d:.54s}.dr-f button:nth-child(2){--d:.6s}
+@media (max-height:700px){.lg{height:56px;gap:6px}}
+@media (prefers-reduced-motion:reduce){
+  .lg-wrap,.lg-wrap.open,.lg,.lg-wrap.open .lg,.dr-lang-btn,.ov.open .dr-lang-btn,.lg-chev,.lg-lh{transition-duration:.01ms!important;transition-delay:0s!important}
+  .lg-wrap.open .lg .fl,.lg.pulse,.lg-cur.flip{animation:none}
+  .lg{transform:none}.dr-lang-btn{translate:none}
+}
+
+/* ข้อความยาวในบางภาษา: ให้ปุ่มหน้าแรกขึ้นบรรทัดใหม่แทนล้นจอ */
+.hero-cta{flex-wrap:wrap}

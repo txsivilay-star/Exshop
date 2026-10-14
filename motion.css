@@ -1,0 +1,56 @@
+/* ===== แอนิเมชันเมนู + ตอนเปิดหน้า =====
+   ใช้ transform / opacity / translate / scale เป็นหลัก เล่นครั้งเดียว ไม่บล็อกการใช้งาน */
+
+/* ---- เมนู: แผ่นกระจกขยายออกมาจากปุ่มเบอร์เกอร์ ---- */
+.panel{transform:scale(.08);opacity:0;transform-origin:calc(100% - 26px) 56px;
+  transition:transform .34s cubic-bezier(.5,0,.75,0),opacity .22s ease .08s}
+.ov.open .panel{transform:none;opacity:1;
+  transition:transform .65s cubic-bezier(.3,1.28,.45,1),opacity .2s ease}
+/* ประกายแสงวิ่งผ่านแผ่นกระจกครั้งเดียวตอนเปิด */
+.panel::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.3) 50%,transparent 58%) no-repeat;background-size:260% 100%;background-position:130% 0;opacity:0}
+.ov.open .panel::after{animation:sheen .95s ease-out .18s 1 both}
+@keyframes sheen{0%{opacity:1;background-position:130% 0}100%{opacity:0;background-position:-30% 0}}
+/* รายการในเมนูไล่เข้ามาทีละอัน */
+.dr-nav a,.dr-f button{opacity:0;translate:0 14px;transition:opacity .15s,translate .15s}
+.ov.open .dr-nav a,.ov.open .dr-f button{opacity:1;translate:0 0;
+  transition:opacity .4s ease var(--d,.2s),translate .6s cubic-bezier(.2,.95,.3,1.15) var(--d,.2s)}
+.dr-nav a:nth-child(1){--d:.16s}.dr-nav a:nth-child(2){--d:.22s}.dr-nav a:nth-child(3){--d:.28s}
+.dr-nav a:nth-child(4){--d:.34s}.dr-nav a:nth-child(5){--d:.40s}
+.dr-f button:nth-child(1){--d:.46s}.dr-f button:nth-child(2){--d:.52s}
+/* เบอร์เกอร์กลายเป็นกากบาท */
+.burger i{transition:transform .5s cubic-bezier(.3,1.4,.5,1),opacity .25s,scale .3s}
+.burger.is-open i:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.is-open i:nth-child(2){opacity:0;scale:0 1}
+.burger.is-open i:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ---- ตอนเปิดหน้า: ลำดับเดียว ~1.1 วินาที ---- */
+.marquee{animation:fadeIn .5s ease backwards}
+.header{animation:hdrIn .75s cubic-bezier(.2,.95,.3,1.12) .05s backwards}
+.header::after{display:block;content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.4) 50%,transparent 58%) no-repeat;background-size:260% 100%;background-position:130% 0;
+  animation:sheen 1.2s ease-out .55s 1 both}
+.hero-bg .hc{animation:cardIn .9s cubic-bezier(.2,.9,.3,1) backwards}
+.hero-bg .hc:nth-child(1){animation-delay:.15s}.hero-bg .hc:nth-child(2){animation-delay:.25s}
+.hero-bg .hc:nth-child(3){animation-delay:.35s}.hero-bg .hc:nth-child(4){animation-delay:.45s}
+.hero h1{animation:rise .8s cubic-bezier(.2,.9,.3,1) .22s backwards}
+.hero p{animation:rise .8s cubic-bezier(.2,.9,.3,1) .38s backwards}
+.hero-cta .btn{animation:pop .7s cubic-bezier(.3,1.4,.5,1) backwards}
+.hero-cta .btn:nth-child(1){animation-delay:.55s}.hero-cta .btn:nth-child(2){animation-delay:.65s}
+.banner{animation:rise .8s cubic-bezier(.2,.9,.3,1) .7s backwards}
+.announce{animation:rise .7s cubic-bezier(.2,.9,.3,1) .8s backwards}
+.stat{animation:rise .7s cubic-bezier(.2,.9,.3,1) backwards}
+.stat:nth-child(1){animation-delay:.88s}.stat:nth-child(2){animation-delay:.94s}
+.stat:nth-child(3){animation-delay:1s}.stat:nth-child(4){animation-delay:1.06s}
+
+@keyframes fadeIn{from{opacity:0}}
+@keyframes hdrIn{from{opacity:0;transform:translate(-50%,-22px) scale(.92)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+@keyframes rise{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
+@keyframes pop{from{opacity:0;translate:0 14px;scale:.88}to{opacity:1;translate:0 0;scale:1}}
+@keyframes cardIn{from{opacity:0;translate:-70px 40px}to{opacity:1;translate:0 0}}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee,.header,.header::after,.hero-bg .hc,.hero h1,.hero p,.hero-cta .btn,.banner,.announce,.stat,.panel::after{animation:none!important}
+  .panel,.ov.open .panel,.dr-nav a,.dr-f button,.ov.open .dr-nav a,.ov.open .dr-f button,.burger i{transition-duration:.01ms!important;transition-delay:0s!important}
+  .panel{transform:none}.dr-nav a,.dr-f button{translate:none}
+}

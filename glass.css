@@ -1,0 +1,101 @@
+/* ===== Liquid Glass (สไตล์ iOS 26) =====
+   หลักการ: กระจกใช้เฉพาะ "ชั้นควบคุมที่ลอยอยู่เหนือเนื้อหา" (แถบบน เมนู กล่องล็อกอิน แผงแจ้งเตือน ข้อความเด้ง)
+   เนื้อหาหลัก (การ์ดสินค้า แบนเนอร์ สถิติ ช่องกรอก) ไม่ใส่กระจก เพื่อให้อ่านง่าย
+   และไม่ซ้อนกระจกบนกระจก: ปุ่มที่อยู่ในแถบกระจกจะแบนหรือใช้สีย้อมแทน */
+:root{
+  --bg:#ffffff;
+  --gl-bg:linear-gradient(135deg,rgba(255,255,255,.66),rgba(255,255,255,.36));
+  --gl-bd:rgba(255,255,255,.75);
+  --gl-spec:inset 1.5px 1.5px 1px -.5px rgba(255,255,255,.95),inset -1.5px -1.5px 1px -.5px rgba(255,255,255,.5),inset 4px 4px 8px -4px rgba(90,170,255,.28),inset -4px -4px 8px -4px rgba(255,100,150,.22),inset 0 0 16px rgba(255,255,255,.3);
+  --gl-sh:0 10px 30px rgba(30,30,60,.16),0 1px 3px rgba(0,0,0,.06);
+  --gl-blur:blur(22px) saturate(180%);
+  --gl-lens:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.6));
+  --gl-well:rgba(120,120,140,.14);
+  --gl-hi:linear-gradient(115deg,rgba(255,255,255,.55),rgba(255,255,255,0) 38%),radial-gradient(70% 45% at 85% 118%,rgba(255,255,255,.5),transparent 70%);
+  --gl-red:linear-gradient(180deg,rgba(255,72,72,.96),rgba(224,0,0,.92));
+  --gl-red-spec:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(0,0,0,.18);
+}
+:root[data-theme="dark"]{
+  --bg:#000000;
+  --gl-bg:linear-gradient(135deg,rgba(255,255,255,.17),rgba(255,255,255,.05));
+  --gl-bd:rgba(255,255,255,.2);
+  --gl-spec:inset 1.5px 1.5px 1px -.5px rgba(255,255,255,.55),inset -1.5px -1.5px 1px -.5px rgba(255,255,255,.22),inset 4px 4px 8px -4px rgba(110,190,255,.4),inset -4px -4px 8px -4px rgba(255,110,160,.32),inset 0 0 16px rgba(255,255,255,.05);
+  --gl-sh:0 14px 36px rgba(0,0,0,.55),0 1px 3px rgba(0,0,0,.4);
+  --gl-lens:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.12));
+  --gl-well:rgba(0,0,0,.35);
+  --gl-hi:linear-gradient(115deg,rgba(255,255,255,.2),rgba(255,255,255,0) 38%),radial-gradient(70% 45% at 85% 118%,rgba(255,255,255,.2),transparent 70%);
+}
+
+
+/* ชั้นกระจกหลัก */
+.header,.panel,.am-card,.soon-c,.atoast,.btn-glass{
+  background:var(--gl-bg);border:1px solid var(--gl-bd);box-shadow:var(--gl-sh),var(--gl-spec);
+  -webkit-backdrop-filter:var(--gl-blur);backdrop-filter:var(--gl-blur)}
+.header,.panel,.am-card,.soon-c,.atoast{isolation:isolate}
+.header::before,.panel::before,.am-card::before,.soon-c::before,.atoast::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:var(--gl-hi)}
+.header::after{display:none}
+
+/* แถบบน: แคปซูลลอย */
+.header{width:calc(100% - 20px);max-width:500px;top:calc(env(safe-area-inset-top,0px) + 38px);height:52px;border-radius:26px;padding:0 12px 0 10px;border-bottom:1px solid var(--gl-bd)}
+/* ปุ่มในแถบ: ไม่ซ้อนกระจก */
+.hb{border-radius:999px;transition:transform .35s cubic-bezier(.3,1.5,.5,1),background .25s}
+.hb:active,.btn:active,.burger:active{transform:scale(.93)}
+.hb-theme{background:transparent;border-color:transparent;border-radius:50%}
+.hb-login{background:transparent;border:1px solid var(--gl-bd)}
+.hb-chat{background:rgba(255,0,0,.14);border-color:rgba(255,0,0,.4)}
+.hb-reg,.btn-red{background:var(--gl-red);box-shadow:var(--gl-red-spec),0 6px 16px rgba(255,0,0,.35)}
+.btn-glass{border-radius:14px}
+.btn{transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+
+/* เมนูข้าง: แผ่นกระจกลอย */
+.panel{top:calc(env(safe-area-inset-top,0px) + 8px);bottom:8px;right:8px;width:calc(77.5% - 8px);border-radius:30px;padding-top:0;transform:translateX(calc(100% + 16px))}
+.ov.open .panel{transform:none}
+.dr-h,.dr-f{border-color:rgba(255,255,255,.14)}
+.dr-x{background:transparent}
+.dr-nav a.on{background:rgba(255,0,0,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);border-radius:16px}
+.dr-f .l{background:transparent;border-color:var(--gl-bd)}
+.dr-f .r{background:var(--gl-red);box-shadow:var(--gl-red-spec)}
+
+/* กล่องล็อกอิน */
+.am{background:rgba(255,255,255,.93)}
+:root[data-theme="dark"] .am{background:rgba(0,0,0,.93)}
+.am-card{border-radius:28px;border-color:var(--gl-bd)}
+.am-h{border-bottom-color:rgba(255,255,255,.14)}
+.am-x{background:transparent}
+.am-tabs{background:var(--gl-well);border-color:transparent;box-shadow:inset 0 1px 3px rgba(0,0,0,.25)}
+.am-pill{background:var(--gl-lens);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 2px 8px rgba(0,0,0,.22)}
+:root[data-theme="dark"] .am-pill{box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 2px 8px rgba(0,0,0,.4)}
+.am-tab[aria-selected="true"]{color:var(--text)}
+/* ช่องกรอก: ไม่ใส่กระจก เน้นอ่านง่าย */
+.inp{background:var(--gl-well);border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 3px rgba(0,0,0,.25)}
+:root:not([data-theme="dark"]) .inp{border-color:rgba(0,0,0,.08);background:rgba(255,255,255,.55)}
+.go{background:var(--gl-red);box-shadow:var(--gl-red-spec),0 8px 20px rgba(255,0,0,.4)}
+.go:disabled{background:var(--gl-well);box-shadow:none}
+
+/* แผงแจ้งเตือน / ข้อความเด้ง */
+.atoast{border-left-width:1px;border-radius:18px}
+.soon-c{border-radius:30px 30px 0 0;border-bottom:0;background:var(--gl-bg),rgba(0,0,0,.35)}
+:root:not([data-theme="dark"]) .soon-c{background:var(--gl-bg)}
+.snack{background:rgba(30,30,36,.5);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:18px;box-shadow:var(--gl-sh),inset 0 1px 0 rgba(255,255,255,.35);-webkit-backdrop-filter:var(--gl-blur);backdrop-filter:var(--gl-blur)}
+
+/* สำรอง: ไม่รองรับ blur หรือผู้ใช้ขอลดความโปร่งใส */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .header,.panel,.am-card,.soon-c,.atoast,.btn-glass{background:var(--card)}
+}
+@media (prefers-reduced-transparency:reduce){
+  .refract .header,.refract .panel,.refract .am-card,.refract .soon-c,.refract .atoast{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .header,.panel,.am-card,.soon-c,.atoast,.btn-glass,.snack{background:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .am{background:var(--bg)}
+}
+@media (prefers-reduced-motion:reduce){.hb,.btn{transition:none}}
+
+/* แถบบนบนจอแคบ: กันปุ่มเบอร์เกอร์ถูกบีบจนหาย */
+.burger{flex:none}
+@media (max-width:420px){
+  .header{gap:4px;padding:0 12px 0 8px}
+  .hb{font-size:13px}
+  .hb-login,.hb-reg{padding:0 10px}
+  .hb-login svg,.hb-reg svg{display:none}
+  .burger{margin-left:4px}
+}
+@media (max-width:340px){.hb{font-size:12px}.hb-login,.hb-reg{padding:0 7px}.hb-theme{width:30px}}

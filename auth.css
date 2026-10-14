@@ -1,0 +1,93 @@
+/* ===== Auth modal (เปิดทับหน้าเว็บ ใต้แถบ header) ===== */
+:root{--seg:#f0f0f2;--seg-on:#fff;--field:#f6f6f7;--ease:cubic-bezier(.2,.7,.2,1)}
+:root[data-theme="dark"]{--seg:#101012;--seg-on:#000;--field:#101012;--card:#0b0b0c;--border:#1f1f24}
+.am{position:fixed;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 98px);bottom:0;width:100%;max-width:520px;z-index:40;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;
+  padding:14px max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 120px) max(16px,env(safe-area-inset-left,0px));
+  opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s .25s}
+.am.open{opacity:1;visibility:visible;transition-delay:0s}
+.am-card{border-radius:16px;background:var(--card);border:1px solid var(--border);transform:translateY(14px);transition:transform .38s var(--ease)}
+.am.open .am-card{transform:none}
+.am-h{display:flex;justify-content:flex-end;align-items:center;min-height:62px;padding:10px 14px;border-bottom:1px solid var(--border)}
+.am-x{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--field);color:var(--muted);transition:color .2s,transform .12s}
+.am-x:active{transform:scale(.92)}
+.am-body{padding:16px 14px 18px}
+.am-tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:4px;border-radius:14px;background:var(--seg);border:1px solid var(--border)}
+.am-pill{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:10px;background:var(--seg-on);box-shadow:0 1px 4px rgba(0,0,0,.18);transition:transform .38s var(--ease)}
+.am-tabs[data-view="register"] .am-pill{transform:translateX(100%)}
+.am-tab{position:relative;height:44px;border-radius:10px;font-size:15px;color:var(--muted);transition:color .25s}
+.am-tab[aria-selected="true"]{color:var(--text)}
+.am-stack{display:grid;margin-top:22px}
+.am-panel{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .26s ease,transform .3s var(--ease),visibility 0s .3s}
+.am-panel.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+
+.field{margin-bottom:12px}
+.field label{display:block;font-size:14px;color:var(--muted);margin-bottom:8px}
+.inp{display:flex;align-items:center;gap:12px;height:54px;padding:0 8px 0 16px;border-radius:14px;background:var(--field);border:1px solid var(--border);color:var(--muted);transition:border-color .2s,color .2s,box-shadow .2s}
+.inp:focus-within{border-color:var(--red);color:var(--red);box-shadow:0 0 0 3px rgba(255,0,0,.14)}
+.inp input{flex:1;min-width:0;height:100%;border:0;outline:0;background:none;color:var(--text);font:inherit;font-size:16px}
+.inp input::placeholder{color:var(--muted);opacity:.6}
+.eye{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text)}
+.eye[aria-pressed="true"]{color:var(--red)}
+.err{min-height:20px;padding-top:4px;font-size:12.5px;line-height:16px;color:var(--red);opacity:0;transform:translateY(-3px);transition:opacity .2s,transform .2s}
+.field.bad .err{opacity:1;transform:none}
+.field.bad .inp{border-color:var(--red);color:var(--red);animation:ashake .3s}
+@keyframes ashake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+.ts{display:flex;justify-content:center;margin-top:4px}
+.ts:empty{display:none}
+.go{position:relative;width:100%;height:54px;margin-top:14px;border-radius:14px;color:#fff;font-weight:600;font-size:16px;overflow:hidden;
+  background:linear-gradient(180deg,#ff2a2a,#e00000);box-shadow:0 8px 20px rgba(255,0,0,.4);transition:transform .12s,box-shadow .2s,background .2s,color .2s}
+.go .lb{display:flex;align-items:center;justify-content:center;gap:10px;transition:opacity .15s}
+.go .lb svg{width:20px;height:20px}
+.go::before{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.26),transparent);transform:translateX(-120%) skewX(-20deg);transition:transform .6s var(--ease)}
+.go:active{transform:scale(.98);box-shadow:0 4px 10px rgba(255,0,0,.3)}
+.go:disabled{background:var(--field);color:var(--muted);box-shadow:none;cursor:not-allowed;border:1px solid var(--border)}
+.sp{position:absolute;left:50%;top:50%;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;opacity:0}
+.go.busy{pointer-events:none}.go.busy .lb{opacity:0}
+.go.busy .sp{opacity:1;animation:aspin .7s linear infinite}
+@keyframes aspin{to{transform:rotate(360deg)}}
+.swap{margin-top:16px;text-align:center;font-size:14.5px;color:var(--muted)}
+.swap button{color:var(--red);padding:8px 4px}
+
+.atoast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);width:calc(100% - 32px);max-width:440px;display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--card);border:1px solid var(--border);border-left:4px solid #e0a100;box-shadow:0 8px 24px rgba(0,0,0,.4);font-size:14px;line-height:1.45;opacity:0;visibility:hidden;transform:translate(-50%,12px);transition:opacity .25s,transform .3s var(--ease),visibility 0s .3s;z-index:60}
+.atoast.show{opacity:1;visibility:visible;transform:translate(-50%,0);transition-delay:0s}
+.atoast svg{margin-top:1px;color:#e0a100}
+.atoast[data-kind="error"]{border-left-color:var(--red)}.atoast[data-kind="error"] svg{color:var(--red)}
+.atoast[data-kind="success"]{border-left-color:#1a9e55}.atoast[data-kind="success"] svg{color:#1a9e55}
+@media (hover:hover){.am-x:hover{color:var(--red)}.go:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 11px 24px rgba(255,0,0,.45)}.go:not(:disabled):hover::before{transform:translateX(330%) skewX(-20deg)}.swap button:hover{text-decoration:underline}}
+@media (prefers-reduced-motion:reduce){.am,.am-card,.am-panel,.am-pill,.go,.go::before,.atoast,.err{transition-duration:.01ms!important;transition-delay:0s!important}.field.bad .inp,.go.busy .sp{animation-duration:.01ms!important}}
+
+/* Google: เส้นแบ่งที่ไหลเป็นสี่สีเมื่อแตะ/โฟกัส ไม่มีกรอบปุ่ม */
+.gl{display:flex;justify-content:center;gap:22px;margin-top:10px}
+.gl-b{position:relative;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 6px 8px;color:var(--muted);font-size:14.5px;transition:color .3s ease}
+.gl-b::before,.gl-b::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;border-radius:2px}
+.gl-b::before{background:var(--border)}
+.gl-b::after{background:linear-gradient(90deg,#4285F4 0 25%,#EA4335 25% 50%,#FBBC05 50% 75%,#34A853 75%);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.65,0,.35,1)}
+.gl-g{width:22px;height:22px;transition:transform .8s cubic-bezier(.65,0,.35,1)}
+.gl-b:active,.gl-b.play{color:var(--text)}.gl-b:focus-visible::after{transform:scaleX(1)}
+.gl-b.play::after{animation:glline .9s cubic-bezier(.65,0,.35,1)}
+.gl-b.play .gl-g{animation:glspin .8s cubic-bezier(.65,0,.35,1)}
+@keyframes glline{0%{transform:scaleX(0);opacity:1}60%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes glspin{to{transform:rotate(360deg)}}
+@media (hover:hover){.gl-b:hover{color:var(--text)}.gl-b:hover::after{transform:scaleX(1)}.gl-b:hover .gl-g{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.gl-b::after,.gl-g{transition-duration:.01ms!important}.gl-b.play::after,.gl-b.play .gl-g{animation:none}}
+
+.gl-d::after{background:linear-gradient(90deg,#5865F2,#9aa3ff,#5865F2)}
+/* แผง Discord (เร็วๆ นี้) */
+.soon{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s .6s}
+.soon.open{opacity:1;visibility:visible;transition-delay:0s}
+.soon-bg{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.soon-c{position:relative;width:100%;max-width:520px;overflow:hidden;text-align:center;padding:30px 24px calc(env(safe-area-inset-bottom,0px) + 22px);border-radius:22px 22px 0 0;background:var(--card);border:1px solid var(--border);border-bottom:0;box-shadow:0 -12px 40px rgba(88,101,242,.25);transform:translateY(100%);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.soon.open .soon-c{transform:none}
+.soon-line{position:absolute;left:0;right:0;top:0;height:3px;overflow:hidden}
+.soon-line::before{content:"";position:absolute;inset:0;width:50%;background:linear-gradient(90deg,transparent,#5865F2,#aab2ff,transparent);animation:soonrun 2.2s ease-in-out infinite}
+@keyframes soonrun{from{transform:translateX(-100%)}to{transform:translateX(200%)}}
+.soon-ic{width:64px;height:64px;margin:0 auto 14px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:rgba(88,101,242,.14);border:1px solid rgba(88,101,242,.4);transform:rotate(-6deg)}
+.soon-ic svg{width:34px;height:34px}
+.soon-c h3{font-size:21px;font-weight:600}
+.soon-c p{margin:8px auto 0;max-width:330px;font-size:14.5px;line-height:1.6;color:var(--muted)}
+.soon-st{position:relative;display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 14px;border-radius:20px;font-size:13px;color:#8e97ff;background:rgba(88,101,242,.12);border:1px solid rgba(88,101,242,.35)}
+.soon-st b{width:7px;height:7px;border-radius:50%;background:#8e97ff;animation:soonp 1.8s ease-in-out infinite}
+@keyframes soonp{50%{transform:scale(.45);opacity:.5}}
+.soon-ok{display:block;margin:18px auto 0;min-height:44px;padding:0 24px;color:var(--text);font-size:15px;font-weight:500;border-bottom:2px solid #5865F2;border-radius:0}
+@media (prefers-reduced-motion:reduce){.soon,.soon-c{transition-duration:.01ms!important}.soon-line::before,.soon-st b{animation:none}}
