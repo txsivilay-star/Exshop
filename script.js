@@ -5,7 +5,7 @@ const CONFIG = {
     login:'', register:'', topup:'', orders:'', hwid:'', chat:''
   },
   onBuy(p){
-    if(p.art === 'unban'){ location.href = 'product.html?p=unban'; return; } /* สินค้าที่มีหน้าสั่งซื้อแล้ว */
+    if(p.art){ location.href = 'product.html?p=' + encodeURIComponent(p.art); return; } /* ทุกสินค้ามีหน้าสั่งซื้อ */
     snack('ສັ່ງຊື້ ' + p.n + ' — ເຊື່ອມລະບົບຊຳລະເງິນທີ່ CONFIG.onBuy');
   }
 };
@@ -104,14 +104,14 @@ function prodImg(p){
 
 /* products */
 const products = [
-  {n:'UNBAN FIVEM', p:'฿0', left:'0', sold:'0', art:'unban', cat:'fivem'},
-  {n:'DEVIL STAR', p:'฿0', left:'0', sold:'0', art:'devil', cat:'fivem'},
-  {n:'CARD (ຄ່າຍຂາວ)', p:'฿0', left:'0', sold:'0', art:'card', cat:'fivem'},
-  {n:'SETTING PERFECTX', p:'฿0', left:'0', sold:'0', art:'setting', cat:'fivem'},
-  {n:'CMD XLIGHT', p:'฿0', left:'0', sold:'0', art:'xlight', cat:'fivem'},
-  {n:'UnlockSkin (Starcommu) ບໍ່ຕ້ອງເຕີມຊື້ສະກິນ', p:'฿0', left:'0', sold:'0', art:'unlock', cat:'fivem'},
-  {n:'CMD COLLECTION [ສັ່ງຄ່າຍຊຶ່ງ]', p:'฿0', left:'0', sold:'0', art:'collection', cat:'fivem'},
-  {n:'UPCRI ປັບອົງສາຄຣີ ເຊັກບໍ່ເຈີ', p:'฿0', left:'0', sold:'0', art:'upcri', cat:'fivem'}
+  {n:'UNBAN FIVEM', p:'₭0', left:'0', sold:'0', art:'unban', cat:'fivem'},
+  {n:'DEVIL STAR', p:'₭0', left:'0', sold:'0', art:'devil', cat:'fivem'},
+  {n:'CARD (ຄ່າຍຂາວ)', p:'₭0', left:'0', sold:'0', art:'card', cat:'fivem'},
+  {n:'SETTING PERFECTX', p:'₭0', left:'0', sold:'0', art:'setting', cat:'fivem'},
+  {n:'CMD XLIGHT', p:'₭0', left:'0', sold:'0', art:'xlight', cat:'fivem'},
+  {n:'UnlockSkin (Starcommu) ບໍ່ຕ້ອງເຕີມຊື້ສະກິນ', p:'₭0', left:'0', sold:'0', art:'unlock', cat:'fivem'},
+  {n:'CMD COLLECTION [ສັ່ງຄ່າຍຊຶ່ງ]', p:'₭0', left:'0', sold:'0', art:'collection', cat:'fivem'},
+  {n:'UPCRI ປັບອົງສາຄຣີ ເຊັກບໍ່ເຈີ', p:'₭0', left:'0', sold:'0', art:'upcri', cat:'fivem'}
 ];
 function renderProducts(cat){
   const list = products.filter(p => p.cat === cat);
@@ -126,14 +126,22 @@ function renderProducts(cat){
       </div>
     </article>`).join('') : `<div class="empty">ຍັງບໍ່ມີສິນຄ້າໃນໝວດນີ້</div>`;
   $('#grid').querySelectorAll('[data-buy]').forEach(b => b.addEventListener('click', () => requireAuth(() => CONFIG.onBuy(list[+b.dataset.buy]))));
+  /* กดที่ชื่อ/รูป/การ์ด ของสินค้าที่มีหน้าสั่งซื้อ → เปิดหน้าสินค้าทันที (ปุ่มซื้อยังทำงานตามเดิม) */
+  $('#grid').querySelectorAll('.pc').forEach((card, i) => {
+    const p = list[i]; if(!p || !p.art) return;
+    const open = () => { location.href = 'product.html?p=' + p.art; };
+    card.classList.add('is-link'); card.tabIndex = 0; card.setAttribute('role', 'link'); card.setAttribute('aria-label', p.n);
+    card.addEventListener('click', e => { if(!e.target.closest('[data-buy]')) open(); });
+    card.addEventListener('keydown', e => { if((e.key === 'Enter' || e.key === ' ') && e.target === card){ e.preventDefault(); open(); } });
+  });
 }
 renderProducts('fivem');
 
 /* featured carousel */
 const feat = [
-  {n:'UNBAN FIVEM', p:'฿0', art:'unban'}, {n:'DEVIL STAR', p:'฿0', art:'devil'},
-  {n:'BR MODS', p:'฿0', art:'br'}, {n:'PHANTOM (AD+IOS)', p:'฿0', art:'phantom'},
-  {n:'ZENTNITYX (AD+IOS)', p:'฿0', art:'zent'}, {n:'CMD XLIGHT', p:'฿0', art:'xlight'}
+  {n:'UNBAN FIVEM', p:'₭0', art:'unban'}, {n:'DEVIL STAR', p:'₭0', art:'devil'},
+  {n:'BR MODS', p:'₭0', art:'br'}, {n:'PHANTOM (AD+IOS)', p:'₭0', art:'phantom'},
+  {n:'ZENTNITYX (AD+IOS)', p:'₭0', art:'zent'}, {n:'CMD XLIGHT', p:'₭0', art:'xlight'}
 ];
 (function(){
   const tr = $('#featTrack'), dots = $('#featDots');

@@ -1,0 +1,25 @@
+/* ===== แอนิเมชันการ์ดสินค้า (หน้าแรก #grid) — ใช้ translate / scale / opacity เท่านั้น ===== */
+.js-cards .pc:not(.is-in){opacity:0}
+.js-cards .pc.is-in{animation:pcIn .85s cubic-bezier(.22,1,.36,1) var(--d,0ms) backwards}
+.js-cards .pc.is-in .pimg{animation:pcZoom 1.3s cubic-bezier(.22,1,.36,1) var(--d,0ms) backwards}
+@keyframes pcIn{from{opacity:0;translate:0 30px;scale:.95}}
+@keyframes pcZoom{from{scale:1.12}}
+
+/* ตอบสนองการแตะ/เมาส์ */
+.pc{transition:translate .35s cubic-bezier(.22,1,.36,1),scale .2s ease,box-shadow .35s ease,border-color .35s ease}
+.pc:active{scale:.985}
+.pimg{transition:scale .7s cubic-bezier(.22,1,.36,1)}
+.buy{transition:scale .15s ease,filter .2s ease,box-shadow .25s ease}
+.buy:active{scale:.95;filter:brightness(.92)}
+@media (hover:hover){
+  .pc:hover{translate:0 -4px;box-shadow:0 14px 28px rgba(0,0,0,.35),0 0 0 1px rgba(255,40,40,.35)}
+  .pc:hover .pimg{scale:1.05}
+  .buy:hover{filter:brightness(1.08);box-shadow:0 7px 18px rgba(255,0,0,.45)}
+}
+@media (prefers-reduced-motion:reduce){
+  .js-cards .pc,.js-cards .pc .pimg{animation:none!important}
+  .pc,.pimg,.buy{transition-duration:.01ms!important}
+}
+
+.pc.is-link{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pc.is-link:focus-visible{outline:2px solid rgba(255,60,60,.7);outline-offset:2px}

@@ -15,7 +15,7 @@
   --pd-plan-bd:#be352b;
   --pd-chip:#111011;
   --pd-flame:#e0913f;
-  --pd-font:'Outfit','Noto Sans Thai Looped','Noto Sans Lao Looped',system-ui,-apple-system,sans-serif;
+  --pd-font:'Outfit','Noto Sans Lao Looped','Noto Sans Thai Looped','Noto Sans Devanagari',system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{background:var(--pd-bg);color-scheme:dark;-webkit-text-size-adjust:100%}
@@ -153,3 +153,24 @@ svg.pd-i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;s
   .pd-pr-v{font-size:21px}
   .pd-info-top h2{font-size:16px}
 }
+
+/* ===== Scroll reveal (transform + opacity only; added by product-motion.js) ===== */
+.js-rv .pd-in{animation:none}
+.js-rv .pd-in:not(.is-in){opacity:0;transform:translate3d(0,24px,0)}
+.js-rv .pd-in.is-in{animation:pd-rv .85s cubic-bezier(.22,1,.36,1) var(--d,0ms) backwards}
+.js-rv .pd-pic.is-in img{animation:pd-zoom 1.3s cubic-bezier(.22,1,.36,1) var(--d,0ms) backwards}
+.js-rv .pd-ul li{--k:0}
+.js-rv .pd-ul li:nth-child(2){--k:1}.js-rv .pd-ul li:nth-child(3){--k:2}.js-rv .pd-ul li:nth-child(4){--k:3}
+.js-rv .pd-ul li:nth-child(5){--k:4}.js-rv .pd-ul li:nth-child(6){--k:5}.js-rv .pd-ul li:nth-child(7){--k:6}.js-rv .pd-ul li:nth-child(n+8){--k:7}
+.js-rv .pd-ul li:not(.is-in){opacity:0;transform:translate3d(0,10px,0)}
+.js-rv .pd-ul li.is-in{animation:pd-li .6s cubic-bezier(.22,1,.36,1) calc(var(--d,0ms) + var(--k) * 55ms) backwards}
+@keyframes pd-rv{from{opacity:0;transform:translate3d(0,24px,0)}}
+@keyframes pd-zoom{from{transform:scale(1.08)}}
+@keyframes pd-li{from{opacity:0;transform:translate3d(0,10px,0)}}
+@media (prefers-reduced-motion:reduce){.js-rv .pd-in:not(.is-in),.js-rv .pd-ul li:not(.is-in){opacity:1;transform:none}}
+
+/* ไม่มีรูปสินค้า: แสดงกรอบชื่อสินค้า (ใช้ภาพเดิมทันทีเมื่ออัปโหลด images/products/<slug>.jpg) */
+.pd-pic.pd-ph{display:grid;place-items:center;background:radial-gradient(90% 70% at 50% 40%,#7a1218,#2a0508 70%,#120204)}
+.pd-pic.pd-ph img{display:none}
+.pd-pic.pd-ph::after{content:attr(data-name);padding:0 24px;text-align:center;font:800 30px/1.1 'Outfit','Noto Sans Lao Looped',sans-serif;color:#fff;word-break:break-word}
+.pd-card[hidden]{display:none}

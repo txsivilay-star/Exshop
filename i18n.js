@@ -719,6 +719,223 @@
 "Vui lòng đăng ký hoặc đăng nhập để tiếp tục",
 "जारी रखने के लिए कृपया साइन अप या लॉगिन करें",
 "Cadastre-se ou entre para continuar"
+],
+"ກັບຄືນ": [
+"ย้อนกลับ",
+"Back",
+"Quay lại",
+"वापस",
+"Voltar"
+],
+"ເລືອກແຜນລາຄາ": [
+"เลือกแผนราคา",
+"Choose a price plan",
+"Chọn gói giá",
+"मूल्य योजना चुनें",
+"Escolha um plano de preço"
+],
+"ລາຄາຕໍ່ຊິ້ນ": [
+"ราคาต่อชิ้น",
+"Price per item",
+"Giá mỗi sản phẩm",
+"प्रति पीस कीमत",
+"Preço por unidade"
+],
+"ແຜນລາຄາ": [
+"แผนราคา",
+"Price plan",
+"Gói giá",
+"मूल्य योजना",
+"Plano de preço"
+],
+"ລາຍລະອຽດ": [
+"รายละเอียด",
+"Details",
+"Chi tiết",
+"विवरण",
+"Detalhes"
+],
+"ສິນຄ້າຄົງເຫຼືອ": [
+"สินค้าคงเหลือ",
+"Stock remaining",
+"Hàng còn lại",
+"शेष स्टॉक",
+"Estoque restante"
+],
+"ເຫຼືອຢູ່": [
+"เหลืออยู่",
+"Remaining",
+"Còn lại",
+"शेष",
+"Restam"
+],
+"ສະຫຼຸບລາຍການສັ່ງຊື້": [
+"สรุปรายการสั่งซื้อ",
+"Order summary",
+"Tóm tắt đơn hàng",
+"ऑर्डर सारांश",
+"Resumo do pedido"
+],
+"ແຜນທີ່ເລືອກ": [
+"แผนที่เลือก",
+"Selected plan",
+"Gói đã chọn",
+"चुनी गई योजना",
+"Plano selecionado"
+],
+"ຈຳນວນເລີ່ມຕົ້ນ": [
+"จำนวนเริ่มต้น",
+"Starting quantity",
+"Số lượng ban đầu",
+"प्रारंभिक मात्रा",
+"Quantidade inicial"
+],
+"ກີບ": [
+"กีบ",
+"LAK",
+"kíp",
+"किप",
+"kip"
+],
+"ສັ່ງຊື້ສິນຄ້າ": [
+"สั่งซื้อสินค้า",
+"Order now",
+"Đặt mua",
+"ऑर्डर करें",
+"Fazer pedido"
+],
+"ສິນຄ້າໝົດ": [
+"สินค้าหมด",
+"Sold out",
+"Hết hàng",
+"स्टॉक खत्म",
+"Esgotado"
+],
+"ກຳລັງດຳເນີນການ…": [
+"กำลังดำเนินการ…",
+"Processing…",
+"Đang xử lý…",
+"प्रोसेस हो रहा है…",
+"Processando…"
+],
+"ຖາວອນ": [
+"ถาวร",
+"Lifetime",
+"Vĩnh viễn",
+"आजीवन",
+"Vitalício"
+],
+"ປົກກະຕິ": [
+"ปกติ",
+"Standard",
+"Thường",
+"सामान्य",
+"Padrão"
+],
+"ບໍ່ພົບສິນຄ້ານີ້": [
+"ไม่พบสินค้านี้",
+"Product not found",
+"Không tìm thấy sản phẩm này",
+"यह उत्पाद नहीं मिला",
+"Produto não encontrado"
+],
+"ບໍ່ພົບສິນຄ້າ": [
+"ไม่พบสินค้า",
+"Product not found",
+"Không tìm thấy sản phẩm",
+"उत्पाद नहीं मिला",
+"Produto não encontrado"
+],
+"ກັບໄປທີ່ຮ້ານຄ້າ": [
+"กลับไปที่ร้านค้า",
+"Back to the shop",
+"Quay lại cửa hàng",
+"दुकान पर वापस जाएँ",
+"Voltar para a loja"
+],
+"ກະລຸນາເຂົ້າສູ່ລະບົບກ່ອນສັ່ງຊື້": [
+"กรุณาเข้าสู่ระบบก่อนสั่งซื้อ",
+"Please log in before ordering",
+"Vui lòng đăng nhập trước khi đặt mua",
+"ऑर्डर से पहले कृपया लॉगिन करें",
+"Entre na conta antes de fazer o pedido"
+],
+"ລະບົບສັ່ງຊື້ຍັງບໍ່ໄດ້ເຊື່ອມຕໍ່ ຈຶ່ງຍັງບໍ່ສາມາດສັ່ງຊື້ໄດ້ໃນຕອນນີ້": [
+"ระบบสั่งซื้อยังไม่ได้เชื่อมต่อ จึงยังไม่สามารถสั่งซื้อได้ในขณะนี้",
+"The ordering system isn't connected yet, so orders can't be placed right now",
+"Hệ thống đặt hàng chưa được kết nối nên hiện chưa thể đặt mua",
+"ऑर्डर सिस्टम अभी जुड़ा नहीं है, इसलिए अभी ऑर्डर नहीं किया जा सकता",
+"O sistema de pedidos ainda não está conectado, então não é possível pedir agora"
+],
+"ສັ່ງຊື້ບໍ່ສຳເລັດ ກະລຸນາລອງໃໝ່ອີກຄັ້ງ": [
+"สั่งซื้อไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
+"Order failed, please try again",
+"Đặt mua không thành công, vui lòng thử lại",
+"ऑर्डर नहीं हो सका, कृपया फिर कोशिश करें",
+"Falha no pedido, tente novamente"
+],
+"ເຊື່ອມຕໍ່ບໍ່ໄດ້ ກະລຸນາກວດສອບອິນເຕີເນັດແລ້ວລອງໃໝ່": [
+"เชื่อมต่อไม่ได้ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองใหม่",
+"Can't connect, check your internet and try again",
+"Không kết nối được, hãy kiểm tra internet rồi thử lại",
+"कनेक्ट नहीं हो पाया, इंटरनेट जाँचकर फिर कोशिश करें",
+"Sem conexão, verifique a internet e tente de novo"
+],
+"ສັ່ງຊື້ສຳເລັດ": [
+"สั่งซื้อสำเร็จ",
+"Order placed",
+"Đặt mua thành công",
+"ऑर्डर सफल",
+"Pedido realizado"
+],
+"ສິ່ງທີ່ຕ້ອງກະກຽມ": [
+"สิ่งที่ต้องเตรียม",
+"What you need to prepare",
+"Những thứ cần chuẩn bị",
+"तैयार रखने योग्य चीज़ें",
+"O que você precisa preparar"
+],
+"Discord ທີ່ສະອາດ 100%": [
+"Discord ที่สะอาด 100%",
+"100% clean Discord",
+"Discord sạch 100%",
+"100% साफ़ Discord",
+"Discord 100% limpo"
+],
+"Steam ທີ່ສະອາດ 100%": [
+"Steam ที่สะอาด 100%",
+"100% clean Steam",
+"Steam sạch 100%",
+"100% साफ़ Steam",
+"Steam 100% limpo"
+],
+"Rockstar ທີ່ສະອາດ 100%": [
+"Rockstar ที่สะอาด 100%",
+"100% clean Rockstar",
+"Rockstar sạch 100%",
+"100% साफ़ Rockstar",
+"Rockstar 100% limpo"
+],
+"ຮອງຮັບທຸກ Windows ເວີຊັນ 25H2 ກໍຮອງຮັບ": [
+"รองรับทุก Windows เวอร์ชั่น 25H2 ก็รองรับ",
+"Supports every Windows version, including 25H2",
+"Hỗ trợ mọi phiên bản Windows, kể cả 25H2",
+"हर Windows वर्ज़न सपोर्टेड, 25H2 भी",
+"Compatível com todas as versões do Windows, inclusive 25H2"
+],
+"ສາມາດປົດໄດ້ທັງ Tx Nc Bt Global ແລະ FiveM": [
+"สามารถปลดได้ทั้ง Tx Nc Bt Global และ FiveM",
+"Unbans Tx Nc Bt Global and FiveM",
+"Gỡ ban được cả Tx Nc Bt Global và FiveM",
+"Tx Nc Bt Global और FiveM दोनों अनबैन कर सकते हैं",
+"Remove o ban de Tx Nc Bt Global e FiveM"
+],
+"ປົດແບນ Bt Global ເປີດຄອມມາໃໝ່ບໍ່ຕ້ອງຣັນ!!": [
+"ปลดแบน Bt Global เปิดคอมมาใหม่ไม่ต้องรัน!!",
+"Bt Global unban: no need to run it again after restarting your PC!!",
+"Gỡ ban Bt Global: mở máy lại không cần chạy lại!!",
+"Bt Global अनबैन: PC दोबारा चालू करने पर फिर से चलाने की ज़रूरत नहीं!!",
+"Unban Bt Global: ao reiniciar o PC não precisa rodar de novo!!"
 ]
 };
   const HTML_LANG = { lo: 'lo', th: 'th', en: 'en', vi: 'vi', hi: 'hi', pt: 'pt-BR' };

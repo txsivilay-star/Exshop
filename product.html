@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>UNBAN FIVEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+Lao+Looped:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="product.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="box" viewBox="0 0 24 24"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></symbol>
+<symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></symbol>
+<symbol id="tick" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+<symbol id="cart" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></symbol>
+<symbol id="flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+</defs>
+</svg>
+
+<main class="pd" id="pd">
+  <nav class="pd-bc pd-in" style="--i:0" aria-label="breadcrumb">
+    <a href="index.html">ໜ້າຫຼັກ</a><i aria-hidden="true">/</i>
+    <a href="index.html#products">ຮ້ານຄ້າ</a><i aria-hidden="true">/</i>
+    <a href="index.html#products" id="bcCat">FIVEM</a><i aria-hidden="true">/</i>
+    <span id="bcName" aria-current="page">UNBAN FIVEM</span>
+  </nav>
+
+  <div id="view" hidden>
+    <header class="pd-head pd-in" style="--i:1">
+      <div class="pd-ico" aria-hidden="true"><svg class="pd-i"><use href="#box"/></svg></div>
+      <div class="pd-ht"><h1 id="hName"></h1><p id="hCat"></p></div>
+      <a class="pd-back" href="index.html#products" id="btnBack" aria-label="ກັບຄືນ"><svg class="pd-i"><use href="#back"/></svg></a>
+    </header>
+
+    <div class="pd-pic pd-in" style="--i:2"><img id="pic" width="756" height="754" decoding="async" fetchpriority="high" alt=""></div>
+
+    <section class="pd-card pd-card--info pd-in" style="--i:3" aria-labelledby="iName">
+      <div class="pd-info-top">
+        <div><h2 id="iName"></h2><p class="pd-sub">ເລືອກແຜນລາຄາ</p></div>
+        <div class="pd-pr">
+          <div class="pd-pr-l"><b aria-hidden="true"><svg class="pd-i"><use href="#box"/></svg></b>ລາຄາຕໍ່ຊິ້ນ</div>
+          <div class="pd-pr-v" id="iPrice" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="pd-lab" id="planLab">ແຜນລາຄາ</div>
+      <div class="pd-plans" id="plans" role="radiogroup" aria-labelledby="planLab"></div>
+    </section>
+
+    <section class="pd-card pd-card--det pd-in" style="--i:4" aria-labelledby="detT">
+      <span class="pd-tag" id="detT">ລາຍລະອຽດ</span>
+      <ul class="pd-ul" id="detList"></ul>
+    </section>
+
+    <section class="pd-card pd-in" style="--i:5" aria-labelledby="stkT">
+      <span class="pd-tag" id="stkT">ສິນຄ້າຄົງເຫຼືອ</span>
+      <div class="pd-left">ເຫຼືອຢູ່ <b id="stock" aria-live="polite"></b> ຊິ້ນ</div>
+    </section>
+
+    <div class="pd-sold pd-in" style="--i:6"><svg class="pd-i"><use href="#flame"/></svg><span>ຂາຍແລ້ວ <b id="sold"></b> ຊິ້ນ</span></div>
+
+    <section class="pd-card pd-card--sum pd-in" style="--i:7" aria-labelledby="sumT">
+      <h3 id="sumT">ສະຫຼຸບລາຍການສັ່ງຊື້</h3>
+      <div class="pd-row"><span>ແຜນທີ່ເລືອກ</span><output id="sPlan"></output></div>
+      <div class="pd-row"><span>ຈຳນວນເລີ່ມຕົ້ນ</span><output id="sQty"></output></div>
+      <div class="pd-row"><span>ລາຄາຕໍ່ຊິ້ນ</span><output id="sPrice"></output></div>
+    </section>
+
+    <button class="pd-buy pd-in" style="--i:8" id="btnBuy" type="button"><svg class="pd-i"><use href="#cart"/></svg><span class="sp" aria-hidden="true"></span><span id="buyT">ສັ່ງຊື້ສິນຄ້າ</span></button>
+    <p class="pd-msg" id="msg" role="status" aria-live="polite"></p>
+  </div>
+
+  <div class="pd-empty" id="empty" hidden>
+    <p>ບໍ່ພົບສິນຄ້ານີ້</p>
+    <a href="index.html#products">ກັບໄປທີ່ຮ້ານຄ້າ</a>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="i18n.js"></script>
+<script src="product.js"></script>
+<script src="product-motion.js"></script>
+</body>
+</html>
