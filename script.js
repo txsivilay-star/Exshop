@@ -4,7 +4,10 @@ const CONFIG = {
   routes: { // ใส่ URL จริง ถ้าเว้นว่างจะขึ้นข้อความแจ้งเตือนแทน
     login:'', register:'', topup:'', orders:'', hwid:'', chat:''
   },
-  onBuy(p){ snack('ສັ່ງຊື້ ' + p.n + ' — ເຊື່ອມລະບົບຊຳລະເງິນທີ່ CONFIG.onBuy'); }
+  onBuy(p){
+    if(p.art === 'unban'){ location.href = 'product.html?p=unban'; return; } /* สินค้าที่มีหน้าสั่งซื้อแล้ว */
+    snack('ສັ່ງຊື້ ' + p.n + ' — ເຊື່ອມລະບົບຊຳລະເງິນທີ່ CONFIG.onBuy');
+  }
 };
 
 /* เປິດ/ປິດการแสดงผล: true = แสดง, false = ซ่อน (ข้อมูลยังอยู่ครบ) */
